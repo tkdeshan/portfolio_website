@@ -477,7 +477,7 @@ h6 {
   background: var(--accent-color);
   color: var(--contrast-color);
   line-height: 1;
-  margin: 0 4px;
+  margin: 0 10px;
   border-radius: 50%;
   text-align: center;
   width: 36px;
@@ -491,7 +491,6 @@ h6 {
 }
 
 .footer .copyright {
-  padding-top: 25px;
   border-top: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
 }
 
@@ -694,7 +693,7 @@ section,
   justify-content: center;
 }
 
-.hero img {
+.hero video {
   position: absolute;
   inset: 0;
   display: block;
