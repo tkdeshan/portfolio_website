@@ -200,3 +200,88 @@
   });
 
 })();
+
+// popup box
+document.addEventListener("DOMContentLoaded", function () {
+  var currentSlideIndex = 0;
+  var slides = document.querySelectorAll(".popup .slide");
+  var popupBox = document.getElementById("popup-1");
+  var prevArrow = document.querySelector(".prev-arrow");
+  var nextArrow = document.querySelector(".next-arrow");
+
+  // Show popup with the first slide
+  function showPopup() {
+    popupBox.classList.add("show");
+    popupBox.classList.remove("hide");
+    showSlide(currentSlideIndex); // Ensure the initial slide is shown
+  }
+
+  // Hide popup
+  function hidePopup() {
+    popupBox.classList.add("hide");
+    popupBox.classList.remove("show");
+    // Remove class after the fade-out transition ends
+    setTimeout(function () {
+      popupBox.style.display = "none";
+    }, 300); // Match the duration in CSS
+  }
+
+  // Show the current slide
+  function showSlide(index) {
+    slides.forEach(function (slide, i) {
+      slide.style.display = i === index ? "block" : "none";
+    });
+    currentSlideIndex = index;
+    updateArrows();
+  }
+
+  // Show next slide
+  function nextSlide() {
+    currentSlideIndex = (currentSlideIndex + 1) % slides.length;
+    showSlide(currentSlideIndex);
+  }
+
+  // Show previous slide
+  function prevSlide() {
+    currentSlideIndex = (currentSlideIndex - 1 + slides.length) % slides.length;
+    showSlide(currentSlideIndex);
+  }
+
+  // Update arrows visibility based on current slide index
+  function updateArrows() {
+    prevArrow.style.display = currentSlideIndex === 0 ? "none" : "block";
+    nextArrow.style.display = currentSlideIndex === slides.length - 1 ? "none" : "block";
+  }
+
+  // Open the popup when clicking on an image
+  document.querySelectorAll("[data-popup]").forEach(function (img) {
+    img.addEventListener("click", function () {
+      popupBox.style.display = "flex"; // Ensure the popup is shown
+      showPopup();
+    });
+  });
+
+  // Close popup
+  document.querySelector(".close-btn").addEventListener("click", function () {
+    hidePopup();
+  });
+
+  // Navigate to the next slide
+  document.querySelector(".next-arrow").addEventListener("click", function () {
+    nextSlide();
+  });
+
+  // Navigate to the previous slide
+  document.querySelector(".prev-arrow").addEventListener("click", function () {
+    prevSlide();
+  });
+
+  // Close popup when clicking outside the content area
+  popupBox.addEventListener("click", function (e) {
+    if (e.target === popupBox) {
+      hidePopup();
+    }
+  });
+});
+
+
