@@ -911,45 +911,6 @@ section,
 }
 
 /*--------------------------------------------------------------
-# Testimonials Section
---------------------------------------------------------------*/
-.testimonial-item {
-  border: 1px solid #3c3a3a;
-  border-radius: 10px;
-  padding: 20px;
-  background-color: #1f1c1c;
-}
-
-.testimonial-item .testimonial-text {
-  margin-bottom: 20px;
-  font-style: italic;
-}
-
-.testimonial-item .quote-icon-left,
-.testimonial-item .quote-icon-right {
-  font-size: 24px;
-  color: #18d26e;
-}
-
-.testimonial-item .testimonial-img {
-  border-radius: 50%;
-  width: 80px;
-  height: 80px;
-  object-fit: cover;
-}
-
-.testimonial-item h3 {
-  font-size: 1.2em;
-  margin: 0;
-}
-
-.testimonial-item h4 {
-  font-size: 1em;
-  color: #838181;
-  margin: 0;
-}
-
-/*--------------------------------------------------------------
 # Resume Section
 --------------------------------------------------------------*/
 .resume .resume-title {
@@ -1297,7 +1258,7 @@ section,
 }
 
 .popup .slide .buttons a:hover {
-  transform: scale(1.05) rotate(-1deg);
+  /* transform: scale(1.05) rotate(-1deg); */
   background-color: #06993c;
 }
 
@@ -1532,3 +1493,114 @@ section,
 .contact .php-email-form button[type="submit"]:hover {
   background: color-mix(in srgb, var(--accent-color), transparent 20%);
 }
+
+/*--------------------------------------------------------------
+# Recommendation Section
+--------------------------------------------------------------*/
+.testimonial-item {
+  position: relative;
+  border: 1px solid #3c3a3a;
+  border-radius: 10px;
+  padding: 20px 20px 40px 20px;
+  background-color: #1f1c1c;
+}
+
+.testimonial-item .testimonial-text {
+  margin-bottom: 20px;
+  font-style: italic;
+}
+
+.testimonial-item .quote-icon-left,
+.testimonial-item .quote-icon-right {
+  font-size: 24px;
+  color: #18d26e;
+}
+
+.testimonial-item .profile {
+  position: absolute;
+  bottom: 10px;
+  right: 30px;
+}
+
+.testimonial-item .testimonial-img {
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+}
+
+.testimonial-item h3 {
+  font-size: 1.2em;
+  margin: 0;
+}
+
+.testimonial-item h4 {
+  font-size: 1em;
+  color: #838181;
+  margin: 0;
+}
+
+.testimonial-item .rc-read-more-btn {
+  background-color: #0cc851;
+  border-radius: 100px;
+  color: rgb(0, 0, 0);
+  cursor: pointer;
+  display: inline-block;
+  font-family: CerebriSans-Regular, -apple-system, system-ui, Roboto, sans-serif;
+  padding: 7px 20px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 250ms;
+  border: 0;
+  font-size: 16px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.testimonial-item .rc-read-more-btn:hover {
+  background-color: #06993c;
+}
+
+.rc-popup {
+  display: none; /* Hide the popup initially */
+  position: fixed;
+  top: -30px;
+  left: 0;
+  width: 100%;
+  height: 110%;
+  background: rgba(0, 0, 0, 1);
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.3s ease; /* Fade transition */
+}
+
+.rc-popup.show {
+  display: block;
+  opacity: 1;
+}
+
+.rc-popup-content {
+
+  max-width: 800px;
+  margin: 0px auto;
+  background: #000000;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.popup-close-btn {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  background: transparent;
+  border: none;
+  font-size: 30px;
+  cursor: pointer;
+  color: #ffffff;
+  z-index: 2;
+}
+
+

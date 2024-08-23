@@ -295,3 +295,42 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 });
+
+
+// Recommendation pupup
+document.addEventListener("DOMContentLoaded", () => {
+  // Function to open a specific popup
+  const openPopup = (popupId) => {
+    const popup = document.getElementById(popupId);
+    if (popup) {
+      popup.classList.add("show"); // Show the popup with fade-in
+    }
+  };
+
+  // Get all the "Read more" buttons
+  const readMoreButtons = document.querySelectorAll(".read-more-btn");
+
+  readMoreButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const popupId = button.getAttribute("data-popup");
+      openPopup(popupId);
+    });
+  });
+
+  // Get all the close buttons
+  const closeButtons = document.querySelectorAll(".popup-close-btn");
+
+  closeButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      // Reload the page on close
+      location.reload();
+    });
+  });
+
+  // Close popup if clicking outside of the popup content
+  document.addEventListener("click", (event) => {
+    if (!event.target.closest(".rc-popup-content") && event.target.closest(".rc-popup")) {
+      location.reload(); // Reload the page if clicking outside
+    }
+  });
+});
