@@ -1,11 +1,3 @@
-/**
-* Template Name: Personal
-* Template URL: https://bootstrapmade.com/personal-free-resume-bootstrap-template/
-* Updated: Aug 07 2024 with Bootstrap v5.3.3
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
-
 (function() {
   "use strict";
 
@@ -201,7 +193,9 @@
 
 })();
 
-// popup box
+/**
+ * Impact pupup 
+ */
 document.addEventListener("DOMContentLoaded", function () {
   var currentSlideIndex = {}; // Store current index for each popup
   var popups = document.querySelectorAll(".popup");
@@ -296,8 +290,9 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-
-// Recommendation pupup
+/**
+ * Recommendation pupup
+ */
 document.addEventListener("DOMContentLoaded", () => {
   // Function to open a specific popup
   const openPopup = (popupId) => {
@@ -308,7 +303,7 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   // Get all the "Read more" buttons
-  const readMoreButtons = document.querySelectorAll(".read-more-btn");
+  const readMoreButtons = document.querySelectorAll(".rc-read-more-btn");
 
   readMoreButtons.forEach((button) => {
     button.addEventListener("click", () => {
