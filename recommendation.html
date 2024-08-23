@@ -78,89 +78,12 @@
       <!-- Recommendation Section -->
       <section id="recommendation" class="recommendation section">
         <div class="container">
-            <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
-              <!-- Recommendation Item 1 -->
-              <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-recognition">
-                <div class="testimonial-item">
-                  <p>
-                    <i class="bi bi-quote quote-icon-left"></i>
-                    <span class="testimonial-text">
-                      Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam
-                      duis minim tempor labore quem eram duis noster aute amet eram fore quis sint minim.
-                    </span>
-                    <i class="bi bi-quote quote-icon-right"></i>
-                  </p>
-                  <button class="rc-read-more-btn" data-popup="popup-1">Read more</button><br/><br/>
-                  <div class="profile">
-                    <img src="assets/img/recommendation" class="testimonial-img" alt="recommendation" />
-                    <h3>Jena Karlis</h3>
-                    <h4>Store Owner</h4>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Popup Box for Recommendation Item 1 -->
-              <div id="popup-1" class="rc-popup">
-                <div class="rc-popup-content">
-                  <button class="popup-close-btn">&times;</button> 
-                  <div class="testimonial-item">
-                    <p>
-                      <i class="bi bi-quote quote-icon-left"></i>
-                      <span class="testimonial-text">
-                        Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam
-                        duis minim tempor labore quem eram duis noster aute amet eram fore quis sint minim.
-                      </span>
-                      <i class="bi bi-quote quote-icon-right"></i>
-                    </p>
-                    <img src="assets/img/recommendation" class="testimonial-img" alt="recommendation" />
-                    <h3>Jena Karlis</h3>
-                    <h4>Store Owner</h4>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Recommendation Item 2 -->
-              <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-recognition">
-                <div class="testimonial-item">
-                  <p>
-                    <i class="bi bi-quote quote-icon-left"></i>
-                    <span class="testimonial-text">
-                      Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam
-                      duis minim tempor labore quem eram duis noster aute amccyhhhhhhhhhh.
-                    </span>
-                    <i class="bi bi-quote quote-icon-right"></i>
-                  </p>
-                  <button class="rc-read-more-btn" data-popup="popup-2">Read more</button><br/><br/>
-                  <div class="profile">
-                    <img src="assets/img/recommendation" class="testimonial-img" alt="recommendation" />
-                    <h3>Kavinda</h3>
-                    <h4>Software eng</h4>
-                  </div>
-                </div>
-              </div>
-
-               <!-- Popup Box for Recommendation Item 2 -->
-              <div id="popup-2" class="rc-popup">
-                <div class="rc-popup-content">
-                  <button class="popup-close-btn">&times;</button> 
-                  <div class="testimonial-item">
-                    <p>
-                      <i class="bi bi-quote quote-icon-left"></i>
-                      <span class="testimonial-text">
-                       Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam
-                      duis minim tempor labore quem eram duis noster aute amccyhhhhhhhhhh.
-                      </span>
-                      <i class="bi bi-quote quote-icon-right"></i>
-                    </p>
-                    <img src="assets/img/recommendation" class="testimonial-img" alt="recommendation" />
-                    <h3>kavinda</h3>
-                    <h4>Softwre eng</h4>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- End Recommendation Container -->
-
+          <div
+            class="row gy-4 isotope-container"
+            data-aos="fade-up"
+            data-aos-delay="200"
+            id="recommendation-list">
+            <!-- Recommendation items will be injected here by JavaScript -->
           </div>
         </div>
       </section>
@@ -175,7 +98,12 @@
         </div>
         <div class="container">
           <div class="copyright">
-            <span>Copyright</span> <strong class="px-1 sitename"><a href="https://www.linkedin.com/in/lilanofficial/" target="_blank">© Lilan Dayananda.</a></strong>
+            <span>Copyright</span>
+            <strong class="px-1 sitename"
+              ><a href="https://www.linkedin.com/in/lilanofficial/" target="_blank"
+                >© Lilan Dayananda.</a
+              ></strong
+            >
             <span>All Rights Reserved</span>
           </div>
         </div>
@@ -204,5 +132,63 @@
 
     <!-- Main JS File -->
     <script src="assets/js/main.js"></script>
+
+    <!-- Recommendation Data File -->
+    <script src="./constants/recommendations.js"></script>
+
+    <script>
+      // Render Recommendations
+      const recommendationList = document.getElementById("recommendation-list");
+
+      recommendations.forEach((rec, index) => {
+        const recHTML = `
+          <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-recognition">
+            <div class="testimonial-item">
+              <p>
+                <i class="bi bi-quote quote-icon-left"></i>
+                <span class="testimonial-text">${rec.quote}</span>
+                <i class="bi bi-quote quote-icon-right"></i>
+              </p>
+              <button class="rc-read-more-btn" data-popup="popup-${index + 1}">Read more</button><br/><br/>
+              <div class="profile">
+                <img src="${rec.image}" class="testimonial-img" alt="recommendation" />
+                <h3>${rec.name}</h3>
+                <h4>${rec.position}</h4>
+              </div>
+            </div>
+          </div>
+
+          <div id="popup-${index + 1}" class="rc-popup">
+            <div class="rc-popup-content">
+              <button class="popup-close-btn">&times;</button> 
+              <div class="popup-testimonial-item">
+                <div class="popup-profile-item">
+                  <div>
+                    <img src="${rec.image}" class="popup-testimonial-img" alt="recommendation" />
+                  </div>
+
+                  <div class="popup-testimonial-text">
+                    <h2>
+                      <span>${rec.name}</span>
+                      <span> <a href="${rec.linkedin}" target="_blank"><i class="bi bi-linkedin"></i></a></span>
+                    </h2>
+                    <h3>${rec.position}</h3>
+                    <h4>${rec.relationship}</h4>
+                    <h5>${rec.date}</h5>
+                    <p>
+                      <i class="bi bi-quote quote-icon-left"></i>
+                      <span class="testimonial-text">${rec.recommendation}</span>
+                      <i class="bi bi-quote quote-icon-right"></i>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+
+        recommendationList.insertAdjacentHTML("beforeend", recHTML);
+      });
+    </script>
   </body>
 </html>
