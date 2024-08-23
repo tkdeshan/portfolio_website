@@ -1,11 +1,3 @@
-/**
-* Template Name: Personal
-* Template URL: https://bootstrapmade.com/personal-free-resume-bootstrap-template/
-* Updated: Aug 07 2024 with Bootstrap v5.3.3
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
-
 (function() {
   "use strict";
 
@@ -201,87 +193,139 @@
 
 })();
 
-// popup box
+/**
+ * Impact pupup 
+ */
 document.addEventListener("DOMContentLoaded", function () {
-  var currentSlideIndex = 0;
-  var slides = document.querySelectorAll(".popup .slide");
-  var popupBox = document.getElementById("popup-1");
-  var prevArrow = document.querySelector(".prev-arrow");
-  var nextArrow = document.querySelector(".next-arrow");
+  var currentSlideIndex = {}; // Store current index for each popup
+  var popups = document.querySelectorAll(".popup");
 
-  // Show popup with the first slide
-  function showPopup() {
-    popupBox.classList.add("show");
-    popupBox.classList.remove("hide");
-    showSlide(currentSlideIndex); // Ensure the initial slide is shown
+  // Initialize current slide index for each popup
+  popups.forEach(function (popup) {
+    var id = popup.id;
+    currentSlideIndex[id] = 0;
+  });
+
+  function showPopup(popup) {
+    popup.classList.add("show");
+    popup.classList.remove("hide");
+    showSlide(popup.id, currentSlideIndex[popup.id]);
   }
 
-  // Hide popup
-  function hidePopup() {
-    popupBox.classList.add("hide");
-    popupBox.classList.remove("show");
-    // Remove class after the fade-out transition ends
+  function hidePopup(popup) {
+    popup.classList.add("hide");
+    popup.classList.remove("show");
     setTimeout(function () {
-      popupBox.style.display = "none";
-    }, 300); // Match the duration in CSS
+      popup.style.display = "none";
+    }, 300);
   }
 
-  // Show the current slide
-  function showSlide(index) {
+  function showSlide(popupId, index) {
+    var popup = document.getElementById(popupId);
+    var slides = popup.querySelectorAll(".slide");
     slides.forEach(function (slide, i) {
-      slide.style.display = i === index ? "block" : "none";
+      slide.style.display = i === index ? "flex" : "none";
     });
-    currentSlideIndex = index;
-    updateArrows();
+    currentSlideIndex[popupId] = index;
+    updateArrows(popup);
   }
 
-  // Show next slide
-  function nextSlide() {
-    currentSlideIndex = (currentSlideIndex + 1) % slides.length;
-    showSlide(currentSlideIndex);
+  function nextSlide(popup) {
+    var popupId = popup.id;
+    var slides = popup.querySelectorAll(".slide");
+    currentSlideIndex[popupId] = (currentSlideIndex[popupId] + 1) % slides.length;
+    showSlide(popupId, currentSlideIndex[popupId]);
   }
 
-  // Show previous slide
-  function prevSlide() {
-    currentSlideIndex = (currentSlideIndex - 1 + slides.length) % slides.length;
-    showSlide(currentSlideIndex);
+  function prevSlide(popup) {
+    var popupId = popup.id;
+    var slides = popup.querySelectorAll(".slide");
+    currentSlideIndex[popupId] = (currentSlideIndex[popupId] - 1 + slides.length) % slides.length;
+    showSlide(popupId, currentSlideIndex[popupId]);
   }
 
-  // Update arrows visibility based on current slide index
-  function updateArrows() {
-    prevArrow.style.display = currentSlideIndex === 0 ? "none" : "block";
-    nextArrow.style.display = currentSlideIndex === slides.length - 1 ? "none" : "block";
+  function updateArrows(popup) {
+    var prevArrow = popup.querySelector(".prev-arrow");
+    var nextArrow = popup.querySelector(".next-arrow");
+    var index = currentSlideIndex[popup.id];
+    var slides = popup.querySelectorAll(".slide");
+
+    prevArrow.style.display = index === 0 ? "none" : "flex";
+    nextArrow.style.display = index === slides.length - 1 ? "none" : "flex";
   }
 
-  // Open the popup when clicking on an image
   document.querySelectorAll("[data-popup]").forEach(function (img) {
     img.addEventListener("click", function () {
-      popupBox.style.display = "flex"; // Ensure the popup is shown
-      showPopup();
+      var popupId = img.getAttribute("data-popup");
+      var popup = document.getElementById(popupId);
+      popup.style.display = "flex";
+      showPopup(popup);
     });
   });
 
-  // Close popup
-  document.querySelector(".close-btn").addEventListener("click", function () {
-    hidePopup();
+  document.querySelectorAll(".close-btn").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      hidePopup(btn.closest(".popup"));
+    });
   });
 
-  // Navigate to the next slide
-  document.querySelector(".next-arrow").addEventListener("click", function () {
-    nextSlide();
+  document.querySelectorAll(".next-arrow").forEach(function (arrow) {
+    arrow.addEventListener("click", function () {
+      nextSlide(arrow.closest(".popup"));
+    });
   });
 
-  // Navigate to the previous slide
-  document.querySelector(".prev-arrow").addEventListener("click", function () {
-    prevSlide();
+  document.querySelectorAll(".prev-arrow").forEach(function (arrow) {
+    arrow.addEventListener("click", function () {
+      prevSlide(arrow.closest(".popup"));
+    });
   });
 
-  // Close popup when clicking outside the content area
-  popupBox.addEventListener("click", function (e) {
-    if (e.target === popupBox) {
-      hidePopup();
-    }
+  document.querySelectorAll(".popup").forEach(function (popup) {
+    popup.addEventListener("click", function (e) {
+      if (e.target === popup) {
+        hidePopup(popup);
+      }
+    });
   });
 });
 
+/**
+ * Recommendation pupup
+ */
+document.addEventListener("DOMContentLoaded", () => {
+  // Function to open a specific popup
+  const openPopup = (popupId) => {
+    const popup = document.getElementById(popupId);
+    if (popup) {
+      popup.classList.add("show"); // Show the popup with fade-in
+    }
+  };
 
+  // Get all the "Read more" buttons
+  const readMoreButtons = document.querySelectorAll(".rc-read-more-btn");
+
+  readMoreButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const popupId = button.getAttribute("data-popup");
+      openPopup(popupId);
+    });
+  });
+
+  // Get all the close buttons
+  const closeButtons = document.querySelectorAll(".popup-close-btn");
+
+  closeButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      // Reload the page on close
+      location.reload();
+    });
+  });
+
+  // Close popup if clicking outside of the popup content
+  document.addEventListener("click", (event) => {
+    if (!event.target.closest(".rc-popup-content") && event.target.closest(".rc-popup")) {
+      location.reload(); // Reload the page if clicking outside
+    }
+  });
+});
