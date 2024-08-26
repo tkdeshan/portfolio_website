@@ -1011,6 +1011,17 @@ section,
   max-width: 500px;
 }
 
+.popup .slide .text-content .source span{
+  font-size: 10px;
+  color: gainsboro;
+}
+
+.popup .slide .text-content .source span a{
+  font-size: 15px;
+  color: rgb(69, 143, 227);
+}
+
+
 .popup .slide .buttons {
   display: flex;
   justify-content: flex-start;
@@ -1324,7 +1335,6 @@ section,
   color: #ffffff;
   z-index: 2;
 }
-
 
 .recommendation .popup-testimonial-item {
   display: flex;
