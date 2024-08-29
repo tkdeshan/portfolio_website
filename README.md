@@ -2,7 +2,7 @@
 
 This is a professional personal portfolio website designed for a businessman or social entrepreneur to showcase their skills, achievements, and recommendations. The site serves as an online platform to highlight professional expertise, key accomplishments, and testimonials from clients or partners.
 
-This is available on : https://github.com/tkdeshan/portfolio_website
+This is available on : https://tkdeshan.github.io/portfolio_website/
 
 ## Features
 - Responsive Design: Optimized for all devices, including desktops, tablets, and mobile phones.
